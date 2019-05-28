@@ -51,15 +51,7 @@ class SearchRepositoriesViewModel(private val repository: GithubRepository) : Vi
     fun searchRepo(queryString: String) {
         queryLiveData.postValue(queryString)
     }
-
-    fun listScrolled(visibleItemCount: Int, lastVisibleItemPosition: Int, totalItemCount: Int) {
-        if (visibleItemCount + lastVisibleItemPosition + VISIBLE_THRESHOLD >= totalItemCount) {
-            val immutableQuery = lastQueryValue()
-            if (immutableQuery != null) {
-                repository.requestMore(immutableQuery)
-            }
-        }
-    }
+    
 
     /**
      * Get the last query value.
